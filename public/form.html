@@ -2,7 +2,12 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>报名</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
+    <title>夏令营报名系统</title>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <link rel="icon" href="./images/nercel.ico" type="image/x-icon"/>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
@@ -23,12 +28,14 @@
         var url = location.href;
         var id = url.split("form/");
         var userid = id[1];
-
+        var userinfo = null;
         // Use Ajax to submit form data
         $.get('/getsubmit', {'userid':userid}, function(result) {
             console.log(result);
+
             // alert('获取成功');
             if(result!=null){
+                userinfo = result;
                 $('.submitedinfo #name').val(result.name);
                 $('.submitedinfo #gender').val(result.gender);
                 $('.submitedinfo #phonenum').val(result.phonenum);
@@ -46,8 +53,11 @@
                 $('.submitedinfo #classrank').val(result.class_rank);
                 $('.submitedinfo #majorrank').val(result.major_rank);
                 $('.submitedinfo #filepath').attr("href",result.file_path);
-                $('#tabsubmit').html("重新报名");
+                // $('#tabsubmit').html("重新报名");
+                $('#tabsubmitinfo').attr("href","#message");
             }else {
+                $('#tabsubmitinfo').attr("href","#profile");
+                //弹出模态框
                 $("#modalinput").text("您尚未报名");
                 $('.bs-example-modal-sm').modal({
                     keyboard:false,
@@ -71,14 +81,14 @@
         </div>
     </div>
 </div>
-<div class="container padding" style="background-color: #eeeeee;opacity:0.8" >
+<div class="container padding" style="background-color: #eeeeee;opacity:1;width: 60%" >
 
     <img src="images/logo.png">
 
     <ul class="nav nav-pills top" id="myTabs">
         <li role="presentation" class="active"><a href="#home">填写须知</a></li>
-        <li role="presentation"><a href="#profile" id="tabsubmit">开始报名</a></li>
-        <li role="presentation"><a href="#message">已报名信息</a></li>
+        <li role="presentation" style="display: none"><a href="#profile" id="tabsubmit">开始报名</a></li>
+        <li role="presentation"><a href="#message" id="tabsubmitinfo">报名信息</a></li>
     </ul>
     <div class="tab-content top well">
         <div role="tabpanel" class="tab-pane fade in active" id="home">
@@ -118,11 +128,11 @@
                 <input id="userid" name="userid" value="" style="display:none"></input>
                 <div class="form-group">
                     <label for="InputName">姓名</label>
-                    <input type="text" class="form-control" id="InputName" name="name" placeholder="请填写姓名">
+                    <input type="text" class="form-control input-lg" id="InputName" name="name" placeholder="请填写姓名">
                 </div>
 
                 <label>性别</label>
-                <div class="form-group">
+                <div class="form-group input-lg">
                     <label class="radio-inline">
                         <input type="radio" name="gender" id="inlineRadio1" value="男"> 男
                     </label>
@@ -131,19 +141,19 @@
                     </label>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group ">
                     <label for="InputPhone">手机号</label>
-                    <input type="tel" class="form-control" id="InputPhone" name="phonenum" placeholder="请填写">
+                    <input type="tel" class="form-control input-lg" id="InputPhone" name="phonenum" placeholder="请填写">
                 </div>
 
                 <div class="form-group">
                     <label for="InputCardID">身份证号</label>
-                    <input type="text" class="form-control" id="InputCardID" name="cardid" placeholder="请填写">
+                    <input type="text" class="form-control input-lg" id="InputCardID" name="cardid" placeholder="请填写">
                 </div>
 
                 <div class="form-group">
                     <label for="InputEmail">邮箱</label>
-                    <input type="text" class="form-control" id="InputEmail" name="email" placeholder="请填写">
+                    <input type="text" class="form-control input-lg" id="InputEmail" name="email" placeholder="请填写">
                 </div>
 
                 <div class="form-group">
@@ -151,16 +161,16 @@
                     <div class="row">
                         <div class="form-group">
                             <div class="col-sm-3">
-                                <select id="input_province" class="form-control" name="input_province">
+                                <select id="input_province" class="form-control input-lg" name="input_province">
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <select id="input_city" class="form-control" name="input_city">
+                                <select id="input_city" class="form-control input-lg" name="input_city">
 
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <select id="input_area" class="form-control" name="input_area">
+                                <select id="input_area" class="form-control input-lg" name="input_area">
 
                                 </select>
                             </div>
@@ -171,7 +181,7 @@
                         <div class="col-sm-9">
                             <div class="form-group">
                                 <label class="sr-only" for="detailAddress">详细地址</label>
-                                <input type="text" class="form-control" id="detailAddress" name="detailaddress" placeholder="详细地址">
+                                <input type="text" class="form-control input-lg" id="detailAddress" name="detailaddress" placeholder="详细地址">
                             </div>
                         </div>
                     </div>
@@ -179,36 +189,36 @@
 
                 <div class="form-group">
                     <label for="InputSchool">就读院校</label>
-                    <input type="text" class="form-control" id="InputSchool" name="school" placeholder="请填写">
+                    <input type="text" class="form-control input-lg" id="InputSchool" name="school" placeholder="请填写">
                 </div>
 
                 <div class="form-group">
                     <label for="InputMajor">就读专业</label>
-                    <input type="text" class="form-control" id="InputMajor" name="major" placeholder="请填写">
+                    <input type="text" class="form-control input-lg" id="InputMajor" name="major" placeholder="请填写">
                 </div>
                 <div class="form-group">
                     <label for="InputPolitics">政治面貌</label>
-                    <input type="text" class="form-control" id="InputPolitics" name="politics" placeholder="请填写">
+                    <input type="text" class="form-control input-lg" id="InputPolitics" name="politics" placeholder="请填写">
                 </div>
                 <div class="form-group">
                     <label for="InputPlanMajor">拟报考专业</label>
-                    <input type="text" class="form-control" id="InputPlanMajor" name="plan_major" placeholder="请填写">
+                    <input type="text" class="form-control input-lg" id="InputPlanMajor" name="plan_major" placeholder="请填写">
                 </div>
                 <div class="form-group">
                     <label for="InputNation">民族</label>
-                    <input type="text" class="form-control" id="InputNation" name="nation" placeholder="请填写">
+                    <input type="text" class="form-control input-lg" id="InputNation" name="nation" placeholder="请填写">
                 </div>
                 <div class="form-group">
                     <label for="InputBirthday">出生日期</label>
-                    <input type="text" class="form-control" id="InputBirthday" name="birthday" value="xxxx年xx月xx日" placeholder="请填写" readonly>
+                    <input type="text" class="form-control input-lg" id="InputBirthday" name="birthday" value="xxxx年xx月xx日" placeholder="请填写" readonly>
                 </div>
                 <div class="form-group">
                     <label for="InputDuty">担任职务</label>
-                    <input type="text" class="form-control " id="InputDuty" name="duty" placeholder="请填写">
+                    <input type="text" class="form-control input-lg" id="InputDuty" name="duty" placeholder="请填写">
                 </div>
                 <div class="form-group">
                     <label for="InputCET">英语水平</label>
-                    <input type="text" class="form-control" id="InputCET" name="cet" placeholder="请填写">
+                    <input type="text" class="form-control input-lg" id="InputCET" name="cet" placeholder="请填写">
                     <!--<select class="form-control" id="InputCET" name="CET">-->
                     <!--<option value="">== 请选择 ==</option>-->
                     <!--<option value="4">四级</option>-->
@@ -216,16 +226,16 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="InputClassRank">所在班级排名（名次/总人数）</label>
-                    <input type="text" class="form-control" id="InputClassRank" name="class_rank" placeholder="请填写">
+                    <label for="InputClassRank">所在班级排名<small>（名次/总人数）</small></label>
+                    <input type="text" class="form-control input-lg" id="InputClassRank" name="class_rank" placeholder="请填写">
                 </div>
                 <div class="form-group">
-                    <label for="InputMajorRank">所在年级专业排名（名次/总人数）</label>
-                    <input type="text" class="form-control" id="InputMajorRank" name="major_rank" placeholder="请填写">
+                    <label for="InputMajorRank">所在年级专业排名<small>（名次/总人数）</small></label>
+                    <input type="text" class="form-control input-lg" id="InputMajorRank" name="major_rank" placeholder="请填写">
                 </div>
                 <div class="form-group">
-                    <label for="InputFile">材料上传</label>
-                    <input type="file" class="form-control" id="InputFile" name="file">
+                    <label for="InputFile">材料上传<small>(文件名参考格式：张三-华中师范大学.zip;文件应小于10M)</small></label>
+                    <input type="file" class="form-control input-lg" id="InputFile" name="file">
                     <span class="help-block" id="filetip"></span>
                 </div>
 
@@ -235,7 +245,7 @@
                             <button type="submit" class="btn btn-success btn-block" id="submitForm">提交</button>
                         </div>
                         <div class="col-sm-3">
-                            <button type="button" class="btn btn-info btn-block" id="overview">预览</button>
+                            <button type="button" class="btn btn-info btn-block" id="overview">取消</button>
                         </div>
                     </div>
                 </div>
@@ -244,76 +254,82 @@
 
         <div role="tabpanel" class="tab-pane fade" id="message">
             <form class="submitedinfo padding">
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon1">姓名</span>
                     <input type="text" class="form-control" id="name" aria-describedby="basic-addon1" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon2">性别</span>
                     <input type="text" class="form-control" id="gender" aria-describedby="basic-addon2" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon3">手机号</span>
                     <input type="text" class="form-control" id="phonenum" aria-describedby="basic-addon3" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon4">身份证号</span>
                     <input type="text" class="form-control" id="cardid" aria-describedby="basic-addon4" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon5">邮箱</span>
                     <input type="text" class="form-control" id="email" aria-describedby="basic-addon5" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon6">地址</span>
                     <input type="text" class="form-control" id="address" aria-describedby="basic-addon6" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon7">就读院校</span>
                     <input type="text" class="form-control" id="school" aria-describedby="basic-addon7" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon8">就读专业</span>
                     <input type="text" class="form-control" id="major" aria-describedby="basic-addon8" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon9">政治面貌</span>
                     <input type="text" class="form-control" id="politics" aria-describedby="basic-addon9" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon10">拟报考专业</span>
                     <input type="text" class="form-control" id="planmajor" aria-describedby="basic-addon10" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon11">民族</span>
                     <input type="text" class="form-control" id="nation" aria-describedby="basic-addon11" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon12">出生日期</span>
                     <input type="text" class="form-control" id="birthday" aria-describedby="basic-addon12" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon13">担任职务</span>
                     <input type="text" class="form-control" id="duty" aria-describedby="basic-addon13" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon14">英语水平</span>
                     <input type="text" class="form-control" id="cet" aria-describedby="basic-addon14" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon15">班级排名</span>
                     <input type="text" class="form-control" id="classrank" aria-describedby="basic-addon15" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon16">专业排名</span>
                     <input type="text" class="form-control" id="majorrank" aria-describedby="basic-addon16" readonly>
                 </div>
-                <div class="input-group">
+                <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="basic-addon17">附件</span>
-                    <a id='filepath' href="" target="_blank">
-                        <input type="button" class="form-control" value="查看文件" aria-describedby="basic-addon17" readonly>
+                    <a id='filepath' href="" target="_blank" class="input-group-lg">
+                        <input type="text" class="form-control " value="点击查看" aria-describedby="basic-addon17" readonly>
                     </a>
-
+                </div>
+                <div class="form-group top">
+                    <div class="row">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <button type="button" class="btn btn-success btn-block" id="resubmit">重新报名</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
@@ -381,17 +397,40 @@
     })
     /*预览按钮*/
     $("#overview").on("click",function () {
-        $('#userid').val(userid);
-        $("#modalinput").text($("#InputBirthday").val());
-        $('.bs-example-modal-sm').modal({
-            keyboard:false,
-            // backdrop:'static'
-        })
+        // location.reload();
+
+        // $('#tabsubmitinfo').attr("href","#message");
+        // alert('ssss')
+        $('#myTabs a:last').tab('show');
     })
     /*导航条*/
     $('#myTabs a').click(function (e) {
         e.preventDefault()
         $(this).tab('show')
+    })
+    /*重新报名*/
+    $('#resubmit').on("click",function () {
+        // $('#tabsubmitinfo').attr("href","#profile");
+        // $('#myTabs a[href="#message"]').tab('hide');
+        $('#myTabs a[href="#profile"]').tab('show');
+        let result = userinfo;
+        $('#defaultForm #InputName').val(result.name);
+        // $('#defaultForm #gender').val(result.gender);
+        $('#defaultForm #InputPhone').val(result.phonenum);
+        $('#defaultForm #InputCardID').val(result.cardid);
+        $('#defaultForm #InputEmail').val(result.email);
+        // $('#defaultForm #address').val(result.address);
+        $('#defaultForm #InputSchool').val(result.school);
+        $('#defaultForm #InputMajor').val(result.major);
+        $('#defaultForm #InputPolitics').val(result.politics);
+        $('#defaultForm #InputPlanMajor').val(result.plan_major);
+        $('#defaultForm #InputNation').val(result.nation);
+        $('#defaultForm #InputDuty').val(result.duty);
+        $('#defaultForm #InputBirthday').val(result.birthday);
+        $('#defaultForm #InputCET').val(result.cet);
+        $('#defaultForm #InputClassRank').val(result.class_rank);
+        $('#defaultForm #InputMajorRank').val(result.major_rank);
+        // $('#defaultForm #filepath').attr("href",result.file_path);
     })
 </script>
 </body>

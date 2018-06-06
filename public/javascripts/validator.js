@@ -152,10 +152,10 @@ $(document).ready(function() {
                 validators: {
                     container: '#filetip',
                     file: {
-                        extension: 'pdf,zip',
-                        type: 'application/pdf,application/zip',
+                        // extension: 'pdf,zip',
+                        // type: 'application/pdf,application/zip',
                         maxSize: 10*1024*1024,
-                        message: '请选择上传小于10M的pdf、zip文件'
+                        message: '请选择上传小于10M的文件'
                     },
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
@@ -186,8 +186,18 @@ $(document).ready(function() {
                 processData:false,
                 contentType:false,
                 success:function (data) {
-                    console.log(data)
-                    $(location).attr('href', './success.html?data='+data);
+                    console.log(data);
+                    $('#tabsubmitinfo').attr("href","#message");
+                    // $('#myTabs a[href="#message"]').tab('hide');
+                    // $('#myTabs a[href="#message"]').tab('show');
+                    // $(location).attr('href', './success.html?data='+data);
+                    //弹出模态框
+                    $("#modalinput").text("报名成功");
+                    $('.bs-example-modal-sm').modal('show');
+                    $('.bs-example-modal-sm').on('hide.bs.modal',function (e) {
+                        location.reload();
+                    });
+
                 },
                 error:function (err) {
 
