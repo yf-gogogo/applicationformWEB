@@ -1,6 +1,6 @@
 body {
   padding: 20px;
-  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
   height: 100%;
   width: 100%;
   background: #e4eef3;
@@ -19,6 +19,9 @@ a {
 .padding{
   padding: 20px;
 }
-.fontsize {
-  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+.content{
+  /*width: auto;*/
+  height: 100px;
+  /*overflow-y: visible;*/
+
 }

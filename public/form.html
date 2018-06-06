@@ -2,6 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <meta http-equiv="X-UA-Compatible" content="IE=8"/>
@@ -36,22 +38,22 @@
             // alert('获取成功');
             if(result!=null){
                 userinfo = result;
-                $('.submitedinfo #name').val(result.name);
-                $('.submitedinfo #gender').val(result.gender);
-                $('.submitedinfo #phonenum').val(result.phonenum);
-                $('.submitedinfo #cardid').val(result.cardid);
-                $('.submitedinfo #email').val(result.email);
-                $('.submitedinfo #address').val(result.address);
-                $('.submitedinfo #school').val(result.school);
-                $('.submitedinfo #major').val(result.major);
-                $('.submitedinfo #politics').val(result.politics);
-                $('.submitedinfo #planmajor').val(result.plan_major);
-                $('.submitedinfo #nation').val(result.nation);
-                $('.submitedinfo #duty').val(result.duty);
-                $('.submitedinfo #birthday').val(result.birthday);
-                $('.submitedinfo #cet').val(result.cet);
-                $('.submitedinfo #classrank').val(result.class_rank);
-                $('.submitedinfo #majorrank').val(result.major_rank);
+                $('.submitedinfo #name').text(result.name);
+                $('.submitedinfo #gender').text(result.gender);
+                $('.submitedinfo #phonenum').text(result.phonenum);
+                $('.submitedinfo #cardid').text(result.cardid);
+                $('.submitedinfo #email').text(result.email);
+                $('.submitedinfo #address').text(result.address);
+                $('.submitedinfo #school').text(result.school);
+                $('.submitedinfo #major').text(result.major);
+                $('.submitedinfo #politics').text(result.politics);
+                $('.submitedinfo #planmajor').text(result.plan_major);
+                $('.submitedinfo #nation').text(result.nation);
+                $('.submitedinfo #duty').text(result.duty);
+                $('.submitedinfo #birthday').text(result.birthday);
+                $('.submitedinfo #cet').text(result.cet);
+                $('.submitedinfo #classrank').text(result.class_rank);
+                $('.submitedinfo #majorrank').text(result.major_rank);
                 $('.submitedinfo #filepath').attr("href",result.file_path);
                 // $('#tabsubmit').html("重新报名");
                 $('#tabsubmitinfo').attr("href","#message");
@@ -81,16 +83,16 @@
         </div>
     </div>
 </div>
-<div class="container padding" style="background-color: #eeeeee;opacity:1;width: 60%" >
+<div class="container padding" style="background-color: #eeeeee;opacity:1" >
 
-    <img src="images/logo.png">
+    <img src="images/logo.png" style="width: 60%">
 
-    <ul class="nav nav-pills top" id="myTabs">
+    <ul class="nav nav-tabs top" id="myTabs">
         <li role="presentation" class="active"><a href="#home">填写须知</a></li>
         <li role="presentation" style="display: none"><a href="#profile" id="tabsubmit">开始报名</a></li>
         <li role="presentation"><a href="#message" id="tabsubmitinfo">报名信息</a></li>
     </ul>
-    <div class="tab-content top well">
+    <div class="tab-content top">
         <div role="tabpanel" class="tab-pane fade in active" id="home">
             <form class="padding">
                 <p class="lead">测试</p>
@@ -234,7 +236,9 @@
                     <input type="text" class="form-control input-lg" id="InputMajorRank" name="major_rank" placeholder="请填写">
                 </div>
                 <div class="form-group">
-                    <label for="InputFile">材料上传<small>(文件名参考格式：张三-华中师范大学.zip;文件应小于10M)</small></label>
+                    <label for="InputFile">材料上传<small>(文件名参考格式：张三-华中师范大学.zip;文件应小于10M)
+                        <a href="https://www.baidu.com" target="_blank">模版下载</a></small>
+                    </label>
                     <input type="file" class="form-control input-lg" id="InputFile" name="file">
                     <span class="help-block" id="filetip"></span>
                 </div>
@@ -254,82 +258,115 @@
 
         <div role="tabpanel" class="tab-pane fade" id="message">
             <form class="submitedinfo padding">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon1">姓名</span>
-                    <input type="text" class="form-control" id="name" aria-describedby="basic-addon1" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">姓名：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="name">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon2">性别</span>
-                    <input type="text" class="form-control" id="gender" aria-describedby="basic-addon2" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">性别：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="gender">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon3">手机号</span>
-                    <input type="text" class="form-control" id="phonenum" aria-describedby="basic-addon3" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">手机号：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="phonenum">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon4">身份证号</span>
-                    <input type="text" class="form-control" id="cardid" aria-describedby="basic-addon4" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">身份证号：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="cardid">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon5">邮箱</span>
-                    <input type="text" class="form-control" id="email" aria-describedby="basic-addon5" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">邮箱：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="email">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon6">地址</span>
-                    <input type="text" class="form-control" id="address" aria-describedby="basic-addon6" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">地址：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="address">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon7">就读院校</span>
-                    <input type="text" class="form-control" id="school" aria-describedby="basic-addon7" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">学校：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="school">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon8">就读专业</span>
-                    <input type="text" class="form-control" id="major" aria-describedby="basic-addon8" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">专业：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="major">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon9">政治面貌</span>
-                    <input type="text" class="form-control" id="politics" aria-describedby="basic-addon9" readonly>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">政治面貌：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="politics">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon10">拟报考专业</span>
-                    <input type="text" class="form-control" id="planmajor" aria-describedby="basic-addon10" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">拟报考专业：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="planmajor">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon11">民族</span>
-                    <input type="text" class="form-control" id="nation" aria-describedby="basic-addon11" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">民族：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="nation">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon12">出生日期</span>
-                    <input type="text" class="form-control" id="birthday" aria-describedby="basic-addon12" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">生日：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="birthday">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon13">担任职务</span>
-                    <input type="text" class="form-control" id="duty" aria-describedby="basic-addon13" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">职务：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="duty">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon14">英语水平</span>
-                    <input type="text" class="form-control" id="cet" aria-describedby="basic-addon14" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">英语水平：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="cet">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon15">班级排名</span>
-                    <input type="text" class="form-control" id="classrank" aria-describedby="basic-addon15" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">班级排名：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="classrank">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon16">专业排名</span>
-                    <input type="text" class="form-control" id="majorrank" aria-describedby="basic-addon16" readonly>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">专业排名：</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="majorrank">email@example.com</p>
+                    </div>
                 </div>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="basic-addon17">附件</span>
-                    <a id='filepath' href="" target="_blank" class="input-group-lg">
-                        <input type="text" class="form-control " value="点击查看" aria-describedby="basic-addon17" readonly>
-                    </a>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">附件：</label>
+                    <div class="col-sm-10">
+                        <a class="form-control-static" id="filepath">点击下载</a>
+                    </div>
                 </div>
                 <div class="form-group top">
-                    <div class="row">
-                        <div class="col-sm-4 col-sm-offset-4">
-                            <button type="button" class="btn btn-success btn-block" id="resubmit">重新报名</button>
-                        </div>
+
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <button type="button" class="btn btn-success btn-block" id="resubmit">重新报名</button>
                     </div>
+
                 </div>
             </form>
         </div>
