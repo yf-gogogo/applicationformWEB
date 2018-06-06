@@ -152,10 +152,10 @@ $(document).ready(function() {
                 validators: {
                     container: '#filetip',
                     file: {
-                        extension: 'pdf',
-                        type: 'application/pdf',
-                        maxSize: 5*1024*1024,
-                        message: '请选择上传小于5M的pdf文件'
+                        extension: 'pdf,zip',
+                        type: 'application/pdf,application/zip',
+                        maxSize: 10*1024*1024,
+                        message: '请选择上传小于10M的pdf、zip文件'
                     },
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
@@ -168,8 +168,8 @@ $(document).ready(function() {
             // Prevent form submission
             e.preventDefault();
 
-            // data.bv.disableSubmitButtons(true);
-
+            // data.bv.disableSubmitButtons(false);
+            $('#userid').val(userid);
 
             // Get the form instance
             var $form = $(e.target);

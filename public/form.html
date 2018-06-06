@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>报名</title>
+    <link rel="icon" href="./images/nercel.ico" type="image/x-icon"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link href="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <link href="stylesheets/bootstrapValidator.min.css" rel="stylesheet">
+
+    <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script src="javascripts/bootstrapValidator.min.js"></script>
+
+    <script type="text/javascript" src="./javascripts/validator.js"></script>
+    <script>
+        var url = location.href;
+        var id = url.split("form/");
+        var userid = id[1];
+
+        // Use Ajax to submit form data
+        $.get('/getsubmit', {'userid':userid}, function(result) {
+            console.log(result);
+            // alert('获取成功');
+            if(result!=null){
+                $('.submitedinfo #name').val(result.name);
+                $('.submitedinfo #gender').val(result.gender);
+                $('.submitedinfo #phonenum').val(result.phonenum);
+                $('.submitedinfo #cardid').val(result.cardid);
+                $('.submitedinfo #email').val(result.email);
+                $('.submitedinfo #address').val(result.address);
+                $('.submitedinfo #school').val(result.school);
+                $('.submitedinfo #major').val(result.major);
+                $('.submitedinfo #politics').val(result.politics);
+                $('.submitedinfo #planmajor').val(result.plan_major);
+                $('.submitedinfo #nation').val(result.nation);
+                $('.submitedinfo #duty').val(result.duty);
+                $('.submitedinfo #birthday').val(result.birthday);
+                $('.submitedinfo #cet').val(result.cet);
+                $('.submitedinfo #classrank').val(result.class_rank);
+                $('.submitedinfo #majorrank').val(result.major_rank);
+                $('.submitedinfo #filepath').attr("href",result.file_path);
+                $('#tabsubmit').html("重新报名");
+            }else {
+                $("#modalinput").text("您尚未报名");
+                $('.bs-example-modal-sm').modal({
+                    keyboard:false,
+                    // backdrop:'static'
+                })
+            }
+        }, 'json');
+    </script>
+</head>
+<body>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">提示</h4>
+            </div>
+            <div class="modal-body">
+                <p id="modalinput"></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container padding" style="background-color: #eeeeee;opacity:0.8" >
+
+    <img src="images/logo.png">
+
+    <ul class="nav nav-pills top" id="myTabs">
+        <li role="presentation" class="active"><a href="#home">填写须知</a></li>
+        <li role="presentation"><a href="#profile" id="tabsubmit">开始报名</a></li>
+        <li role="presentation"><a href="#message">已报名信息</a></li>
+    </ul>
+    <div class="tab-content top well">
+        <div role="tabpanel" class="tab-pane fade in active" id="home">
+            <form class="padding">
+                <p class="lead">测试</p>
+                <ol>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                    <li>测试文本</li>
+                </ol>
+            </form>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade " id="profile">
+            <form id="defaultForm" action="/formsubmit">
+                <input id="userid" name="userid" value="" style="display:none"></input>
+                <div class="form-group">
+                    <label for="InputName">姓名</label>
+                    <input type="text" class="form-control" id="InputName" name="name" placeholder="请填写姓名">
+                </div>
+
+                <label>性别</label>
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" name="gender" id="inlineRadio1" value="男"> 男
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="gender" id="inlineRadio2" value="女"> 女
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputPhone">手机号</label>
+                    <input type="tel" class="form-control" id="InputPhone" name="phonenum" placeholder="请填写">
+                </div>
+
+                <div class="form-group">
+                    <label for="InputCardID">身份证号</label>
+                    <input type="text" class="form-control" id="InputCardID" name="cardid" placeholder="请填写">
+                </div>
+
+                <div class="form-group">
+                    <label for="InputEmail">邮箱</label>
+                    <input type="text" class="form-control" id="InputEmail" name="email" placeholder="请填写">
+                </div>
+
+                <div class="form-group">
+                    <label>家庭住址</label>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <select id="input_province" class="form-control" name="input_province">
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <select id="input_city" class="form-control" name="input_city">
+
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <select id="input_area" class="form-control" name="input_area">
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <label class="sr-only" for="detailAddress">详细地址</label>
+                                <input type="text" class="form-control" id="detailAddress" name="detailaddress" placeholder="详细地址">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="InputSchool">就读院校</label>
+                    <input type="text" class="form-control" id="InputSchool" name="school" placeholder="请填写">
+                </div>
+
+                <div class="form-group">
+                    <label for="InputMajor">就读专业</label>
+                    <input type="text" class="form-control" id="InputMajor" name="major" placeholder="请填写">
+                </div>
+                <div class="form-group">
+                    <label for="InputPolitics">政治面貌</label>
+                    <input type="text" class="form-control" id="InputPolitics" name="politics" placeholder="请填写">
+                </div>
+                <div class="form-group">
+                    <label for="InputPlanMajor">拟报考专业</label>
+                    <input type="text" class="form-control" id="InputPlanMajor" name="plan_major" placeholder="请填写">
+                </div>
+                <div class="form-group">
+                    <label for="InputNation">民族</label>
+                    <input type="text" class="form-control" id="InputNation" name="nation" placeholder="请填写">
+                </div>
+                <div class="form-group">
+                    <label for="InputBirthday">出生日期</label>
+                    <input type="text" class="form-control" id="InputBirthday" name="birthday" value="xxxx年xx月xx日" placeholder="请填写" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="InputDuty">担任职务</label>
+                    <input type="text" class="form-control " id="InputDuty" name="duty" placeholder="请填写">
+                </div>
+                <div class="form-group">
+                    <label for="InputCET">英语水平</label>
+                    <input type="text" class="form-control" id="InputCET" name="cet" placeholder="请填写">
+                    <!--<select class="form-control" id="InputCET" name="CET">-->
+                    <!--<option value="">== 请选择 ==</option>-->
+                    <!--<option value="4">四级</option>-->
+                    <!--<option value="6">六级</option>-->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="InputClassRank">所在班级排名（名次/总人数）</label>
+                    <input type="text" class="form-control" id="InputClassRank" name="class_rank" placeholder="请填写">
+                </div>
+                <div class="form-group">
+                    <label for="InputMajorRank">所在年级专业排名（名次/总人数）</label>
+                    <input type="text" class="form-control" id="InputMajorRank" name="major_rank" placeholder="请填写">
+                </div>
+                <div class="form-group">
+                    <label for="InputFile">材料上传</label>
+                    <input type="file" class="form-control" id="InputFile" name="file">
+                    <span class="help-block" id="filetip"></span>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-3 col-sm-offset-3">
+                            <button type="submit" class="btn btn-success btn-block" id="submitForm">提交</button>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-info btn-block" id="overview">预览</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="message">
+            <form class="submitedinfo padding">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">姓名</span>
+                    <input type="text" class="form-control" id="name" aria-describedby="basic-addon1" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon2">性别</span>
+                    <input type="text" class="form-control" id="gender" aria-describedby="basic-addon2" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon3">手机号</span>
+                    <input type="text" class="form-control" id="phonenum" aria-describedby="basic-addon3" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon4">身份证号</span>
+                    <input type="text" class="form-control" id="cardid" aria-describedby="basic-addon4" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon5">邮箱</span>
+                    <input type="text" class="form-control" id="email" aria-describedby="basic-addon5" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon6">地址</span>
+                    <input type="text" class="form-control" id="address" aria-describedby="basic-addon6" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon7">就读院校</span>
+                    <input type="text" class="form-control" id="school" aria-describedby="basic-addon7" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon8">就读专业</span>
+                    <input type="text" class="form-control" id="major" aria-describedby="basic-addon8" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon9">政治面貌</span>
+                    <input type="text" class="form-control" id="politics" aria-describedby="basic-addon9" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon10">拟报考专业</span>
+                    <input type="text" class="form-control" id="planmajor" aria-describedby="basic-addon10" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon11">民族</span>
+                    <input type="text" class="form-control" id="nation" aria-describedby="basic-addon11" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon12">出生日期</span>
+                    <input type="text" class="form-control" id="birthday" aria-describedby="basic-addon12" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon13">担任职务</span>
+                    <input type="text" class="form-control" id="duty" aria-describedby="basic-addon13" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon14">英语水平</span>
+                    <input type="text" class="form-control" id="cet" aria-describedby="basic-addon14" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon15">班级排名</span>
+                    <input type="text" class="form-control" id="classrank" aria-describedby="basic-addon15" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon16">专业排名</span>
+                    <input type="text" class="form-control" id="majorrank" aria-describedby="basic-addon16" readonly>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon17">附件</span>
+                    <a id='filepath' href="" target="_blank">
+                        <input type="button" class="form-control" value="查看文件" aria-describedby="basic-addon17" readonly>
+                    </a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="./javascripts/pdata.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var html = "<option value=''>-省/自治区/直辖市-</option>";
+        $("#input_city").append("<option value=''>-市-</option>");
+        $("#input_area").append("<option value=''>-区/县-</option>");
+        $.each(pdata,function(idx,item){
+            if (parseInt(item.level) == 0) {
+                html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
+            }
+        });
+        $("#input_province").append(html);
+
+        $("#input_province").change(function(){
+            if ($(this).val() == "") return;
+            $("#input_city option").remove(); $("#input_area option").remove();
+            var code = $(this).find("option:selected").attr("exid"); code = code.substring(0,2);
+            var html = "<option value=''>-市-</option>";
+            $("#input_area").append("<option value=''>-区/县-</option>");
+            $.each(pdata,function(idx,item){
+                if (parseInt(item.level) == 1 && code == item.code.substring(0,2)) {
+                    html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
+                }
+            });
+            $("#input_city").append(html);
+        });
+
+        $("#input_city").change(function(){
+            if ($(this).val() == "") return;
+            $("#input_area option").remove();
+            var code = $(this).find("option:selected").attr("exid"); code = code.substring(0,4);
+            var html = "<option value=''>-区/县-</option>";
+            $.each(pdata,function(idx,item){
+                if (parseInt(item.level) == 2 && code == item.code.substring(0,4)) {
+                    html += "<option value='" + item.names + "' exid='" + item.code + "'>" + item.names + "</option>";
+                }
+            });
+            $("#input_area").append(html);
+        });
+        //绑定
+        $("#input_province").val("");//$("#input_province").change();
+        $("#input_city").val("");//$("#input_city").change();
+        $("#input_area").val("");//$("#input_area").change();
+
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#InputBirthday").datepicker({
+            language: "zh-CN",
+            autoclose: true,//选中之后自动隐藏日期选择框
+            // clearBtn: true,//清除按钮
+        }).on('hide',function (e) {
+            // alert('hide')
+            // $("#InputBirthday").blur()
+            // $("#InputBirthday").val('33ssss3')
+        });
+    })
+    /*预览按钮*/
+    $("#overview").on("click",function () {
+        $('#userid').val(userid);
+        $("#modalinput").text($("#InputBirthday").val());
+        $('.bs-example-modal-sm').modal({
+            keyboard:false,
+            // backdrop:'static'
+        })
+    })
+    /*导航条*/
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>
+</body>
+</html>

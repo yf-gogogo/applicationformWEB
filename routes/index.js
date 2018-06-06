@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+var conf = require('../configure');
+var api_user = require('../controllers/user');
+var api_form = require('../controllers/form');
+
 var DataTypes = require('sequelize');
 var sequelizedb = require('../db').sequelizeDB;
 var f_form = require('../models/form');
@@ -25,7 +29,7 @@ var disk = multer({
     storage:diskstorage,
     limits:{
         fieldNameSize:255,
-        fileSize:5*1024*1024
+        fileSize:10*1024*1024
     }
 });
 
@@ -33,28 +37,29 @@ var disk = multer({
 router.get('/', function(req, res, next) {
   // res.render('index', { title: 'Express' });
     res.send('index.html')
-});
 
-router.post('/formsubmit',disk.single('file'),async function (req,res) {
-    let body = req.body;
-    let address = body.input_province+body.input_city+body.input_area+body.detailaddress;
-    delete body.input_province;
-    delete body.input_city;
-    delete body.input_area;
-    delete body.detailaddress;
-    body['address'] = address;
-    console.log(body);
-    let file_path;
-    if(req.file != null){
-        file_path= "http://localhost:3000/files/" + req.file.filename;
-    }else {
-        file_path = '';
-    }
-    body['file_path'] = file_path;
-
-    let result = await s_form.create(body);
-    res.json(result);
 });
+/* 报名界面 */
+router.get('/form/:id',function (req,res) {
+
+    var options = {
+        root:conf.path.root + '/public/',
+        dotfiles:'deny',
+        headers:{
+
+        }
+    };
+    res.sendFile('form.html',options,function (err) {
+        if(err){
+            console.log(err);
+            res.sendStatus(404).end();
+        }else {
+            console.log()
+        }
+    });
+
+})
+router.post('/formsubmit',disk.single('file'),api_form.submitform);
 router.get('/allinfo',async function (req,res) {
     console.log(req.query)
     let limit = req.query.pageSize;
@@ -70,4 +75,14 @@ router.get('/allinfo',async function (req,res) {
 
     res.json({'total':total,'rows':result.rows});
 });
+//用户注册
+router.post('/adduser',api_user.addUser);
+//用户登录
+router.get('/login',api_user.login);
+//获取是否提交过信息
+router.get('/getsubmit',api_form.getSubmitInfoByuserid);
+//发送验证码
+router.get('/getvertifycode',api_user.sendVertifyCode);
+//发送密码
+router.get('/getpwd',api_user.sendPWD);
 module.exports = router;

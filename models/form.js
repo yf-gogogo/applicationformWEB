@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: ''
     },
     gender: {
-      type: DataTypes.ENUM('0','1'),
+      type: DataTypes.ENUM('男','女'),
       allowNull: true
     },
     phonenum: {
@@ -78,6 +78,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     file_path: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    userid: {
       type: DataTypes.STRING(50),
       allowNull: true
     }
