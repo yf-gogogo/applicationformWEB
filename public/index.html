@@ -32,7 +32,7 @@
 </div>
 <div class="container padding" style="background-color: #eeeeee;opacity:1">
 
-    <img src="images/logo.png" style="width: 60%">
+    <img src="images/images.png" style="width: 100%;">
 
     <ul class="nav nav-tabs top" id="myTabs">
         <li role="presentation" class="active"><a href="#home">登陆</a></li>
@@ -60,11 +60,11 @@
         <div role="tabpanel" class="tab-pane fade" id="profile">
             <form class="padding" id="register">
                 <div class="form-group">
-                    <label for="registeruser">用户名：</label>
+                    <label for="registeruser">用户名：<small>(建议采用姓名拼音)</small></label>
                     <input type="text" class="form-control input-lg" id="registeruser" name="username" placeholder="用户名">
                 </div>
                 <div class="form-group">
-                    <label for="registeremail" >邮箱：</label>
+                    <label for="registeremail" >邮箱：<small>(用于找回密码)</small></label>
                     <input type="email" class="form-control input-lg" id="registeremail" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
@@ -95,9 +95,8 @@
             </form>
         </div>
     </div>
-
-
 </div>
+
 <script type="text/javascript">
     $('#myTabs a').click(function (e) {
         e.preventDefault()
