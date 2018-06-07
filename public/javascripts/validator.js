@@ -169,7 +169,10 @@ $(document).ready(function() {
             e.preventDefault();
 
             // data.bv.disableSubmitButtons(false);
+            //为表单中的userid赋值
             $('#userid').val(userid);
+
+            $('.progress').css('display','block');
 
             // Get the form instance
             var $form = $(e.target);
@@ -185,6 +188,14 @@ $(document).ready(function() {
                 data:formData,
                 processData:false,
                 contentType:false,
+                xhr:function(){
+                    myXhr = $.ajaxSettings.xhr();
+                    if(myXhr.upload){ //检查upload属性是否存在
+                        //绑定progress事件的回调函数
+                        myXhr.upload.addEventListener('progress',progressHandlingFunction, false);
+                    }
+                    return myXhr; //xhr对象返回给jQuery使用
+                },
                 success:function (data) {
                     console.log(data);
                     $('#tabsubmitinfo').attr("href","#message");
@@ -206,7 +217,16 @@ $(document).ready(function() {
                     // Enable the submit buttons
                     // bv.disableSubmitButtons(true);
                 }
-            })
+            });
+            function progressHandlingFunction(e){
+                if(e.lengthComputable){
+                    let value = (e.loaded / e.total * 100 | 0);
+                    $('.progress-bar').css('width',value+'%')
+                    // process=curr/total*100;
+                    console.log("已经上传：" + value);
+                }
+
+            }
         })
 
 });
