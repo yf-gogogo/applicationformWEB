@@ -87,6 +87,11 @@ $(document).ready(function() {
                     identical: {
                         field: 'confirmPassword',
                         message: '两次密码输入不一致'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 20,
+                        message: '密码长度6-20位'
                     }
                 }
             },
@@ -98,6 +103,11 @@ $(document).ready(function() {
                     identical: {
                         field: 'password',
                         message: '两次密码输入不一致'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 20,
+                        message: '密码长度6-20位'
                     }
                 }
             },
@@ -115,7 +125,12 @@ $(document).ready(function() {
         // Use Ajax to submit form data
         $.post('/adduser', $form.serialize(), function(result) {
             console.log(result);
-            alert('注册成功');
+            if(result.errcode == 0){
+                alert("注册成功");
+            }else {
+                alert("邮箱已注册");
+            }
+
             $('#myTabs a:first').tab('show') // Select first tab
         }, 'json');
     });
@@ -132,7 +147,7 @@ $(document).ready(function() {
                 verifyemail: {
                     validators: {
                         notEmpty: {
-                            message: '名字是必需的，不能为空'
+                            message: '邮箱是必需的，不能为空'
                         },
                         emailAddress: {
                             message: '请输入正确的邮箱地址'

@@ -10,21 +10,39 @@ async function addUser(req,res) {
     let username = req.body.username;
     let email = req.body.email;
     let password = req.body.password;
+    let emailReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+    let userinfo = req.body;
+    userinfo['token_exptime'] = new Date().getTime();
+    if(emailReg.test(email)){
+        let result1 = await s_user.findOne({
+            where:{
+                email:email
+            }
+        });
+        if(result1!=null){
+            res.json({"errcode":1});
+        }else {
+            let result = await s_user.create(userinfo);
+            // console.log(result);
+            res.json({"errcode":0});
+        }
+    }else {
+        res.json({"errcode":1});
+    }
 
-    let result = await s_user.create(req.body);
-    res.json(result);
 }
 async function login(req,res){
-    // console.log('sdsds')
+    console.log(req.ip);
     let username = req.query.username;
     let password = req.query.password;
+
     let result = await s_user.findOne({
         where:{
             [Op.or]:[{username:username},{email:username}],
             password:password
         }
     });
-    console.log(result);
+    // console.log(result);
     if(result != null){
         let md5_userid = crypto.createHash('md5').update(result.dataValues.userid.toString()).digest('hex');
         console.log(md5_userid);
@@ -51,7 +69,7 @@ async function sendVertifyCode(req,res) {
         }
     });
     console.log(result[0]);
-    // sendEmail('验证码',code,verifyemail);
+    sendEmail('验证码',code,verifyemail);
     res.json({'msg':result[0]});
 }
 //发送密码
@@ -67,7 +85,7 @@ async function sendPWD(req,res) {
     if(result == null){
         res.json({'errcode':1})
     }else{
-        sendEmail('找回密码',result.dataValues.password,verifyemail)
+        sendEmail('找回密码',result.dataValues.password,verifyemail);
         res.json({'errcode':0})
     }
 }
