@@ -9,6 +9,7 @@ var DataTypes = require('sequelize');
 var sequelizedb = require('../db').sequelizeDB;
 var f_form = require('../models/form');
 var s_form = f_form(sequelizedb,DataTypes);
+var crypto = require('crypto');
 /**
  * 上传文件定义
  */
@@ -58,7 +59,31 @@ router.get('/form/:id',function (req,res) {
         }
     });
 
-})
+});
+/*管理员界面*/
+router.get('/manage/:id',function (req,res) {
+    let id = req.params.id;
+    console.log(id);
+    if(id != crypto.createHash('md5').update('nercel2018').digest('hex')){
+        res.send('Not Found');
+    }else {
+        var options = {
+            root:conf.path.root + '/public/',
+            dotfiles:'deny',
+            headers:{
+
+            }
+        };
+        res.sendFile('admin.html',options,function (err) {
+            if(err){
+                console.log(err);
+                res.sendStatus(404).end();
+            }else {
+                console.log()
+            }
+        });
+    }
+});
 router.post('/formsubmit',disk.single('file'),api_form.submitform);
 router.get('/allinfo',async function (req,res) {
     console.log(req.query)
@@ -79,10 +104,13 @@ router.get('/allinfo',async function (req,res) {
 router.post('/adduser',api_user.addUser);
 //用户登录
 router.get('/login',api_user.login);
+//管理员登陆
+router.get('/manage',api_user.managelogin);
 //获取是否提交过信息
 router.get('/getsubmit',api_form.getSubmitInfoByuserid);
 //发送验证码
 router.get('/getvertifycode',api_user.sendVertifyCode);
 //发送密码
 router.get('/getpwd',api_user.sendPWD);
+
 module.exports = router;

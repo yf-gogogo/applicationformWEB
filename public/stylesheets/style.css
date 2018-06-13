@@ -23,5 +23,34 @@ a {
   /*width: auto;*/
   height: 100px;
   /*overflow-y: visible;*/
+}
+.mycontainer{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 576px) {
+  .mycontainer {
+    max-width: 540px;
+  }
+}
 
+@media (min-width: 768px) {
+  .mycontainer {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .mycontainer {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .mycontainer {
+    max-width: 720px;
+  }
 }

@@ -134,6 +134,43 @@ $(document).ready(function() {
             $('#myTabs a:first').tab('show') // Select first tab
         }, 'json');
     });
+    /*管理员*/
+    $('#manage').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields:{
+            password:{
+                validators: {
+                    notEmpty: {
+                        message: '密码不能为空'
+                    }
+                }
+            }
+        }
+    })
+        .on('success.form.bv', function(e,data) {
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Use Ajax to submit form data
+            $.get('/manage', $form.serialize(), function(result) {
+                // console.log(result);
+                if(result.errcode == 0){
+                    alert('登陆成功');
+                    $(location).attr('href', '/manage/'+result.md5);
+                }else{
+                    alert('密码错误，登陆失败');
+                }
+            }, 'json');
+
+        });
     $('#btnvertifycode').on("click",function () {
 
         $("#getcode").bootstrapValidator({

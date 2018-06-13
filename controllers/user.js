@@ -52,6 +52,20 @@ async function login(req,res){
     }
 
 }
+//管理员登陆
+async function managelogin(req,res){
+    console.log(req.ip);
+    let password = req.query.password;
+
+    if (password == 'nercel2018') {
+       let md5_pwd = crypto.createHash('md5').update(password).digest('hex');
+       // console.log(md5_userid);
+       res.json({'errcode':0,'md5':md5_pwd});
+    } else {
+        res.json({'errcode':1});
+    }
+
+}
 //发送验证码
 async function sendVertifyCode(req,res) {
     console.log(req.query);
@@ -122,5 +136,6 @@ module.exports = {
     addUser,
     login,
     sendVertifyCode,
-    sendPWD
+    sendPWD,
+    managelogin
 }
