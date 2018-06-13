@@ -74,7 +74,7 @@ router.get('/manage/:id',function (req,res) {
 
             }
         };
-        res.sendFile('admin.html',options,function (err) {
+        res.sendFile('auth/admin.html',options,function (err) {
             if(err){
                 console.log(err);
                 res.sendStatus(404).end();
