@@ -61,6 +61,11 @@ $(document).ready(function() {
                     },
                     emailAddress: {
                         message: '请输入正确的邮箱地址'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 40,
+                        message: '邮箱过长'
                     }
                 }
             },
@@ -75,6 +80,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 100,
+                        message: '地址过长'
                     }
                 }
             },
@@ -82,6 +92,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 100,
+                        message: '学校名过长'
                     }
                 }
             },
@@ -89,6 +104,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 100,
+                        message: '专业名过长'
                     }
                 }
             },
@@ -96,6 +116,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 100,
+                        message: '该字段过长'
                     }
                 }
             },
@@ -103,6 +128,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 100,
+                        message: '专业名过长'
                     }
                 }
             },
@@ -110,6 +140,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 100,
+                        message: '该字段过长'
                     }
                 }
             },
@@ -124,6 +159,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 100,
+                        message: '该字段过长'
                     }
                 }
             },
@@ -131,6 +171,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 100,
+                        message: '该字段过长'
                     }
                 }
             },
@@ -138,6 +183,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 100,
+                        message: '该字段过长'
                     }
                 }
             },
@@ -145,6 +195,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '该选项是必需的，不能为空'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 100,
+                        message: '该字段过长'
                     }
                 }
             },

@@ -10,12 +10,12 @@ $(document).ready(function() {
             username: {
                 validators: {
                     notEmpty: {
-                        message: '名字是必需的，不能为空'
+                        message: '不能为空'
                     },
                     stringLength: {
                         min: 1,
-                        max: 30,
-                        message: '用户名过长'
+                        max: 40,
+                        message: '字段过长'
                     }
                 }
             },
@@ -63,7 +63,7 @@ $(document).ready(function() {
                     },
                     stringLength: {
                         min: 1,
-                        max: 30,
+                        max: 20,
                         message: '用户名过长'
                     }
                 }
@@ -76,6 +76,11 @@ $(document).ready(function() {
                     },
                     emailAddress: {
                         message: '请输入正确的邮箱地址'
+                    },
+                    stringLength: {
+                        min: 1,
+                        max: 40,
+                        message: '字段过长'
                     }
                 }
             },
@@ -127,8 +132,10 @@ $(document).ready(function() {
             console.log(result);
             if(result.errcode == 0){
                 alert("注册成功");
-            }else {
+            }else if(result.errcode == 1){
                 alert("邮箱已注册");
+            }else {
+                alert("邮箱格式不对");
             }
 
             $('#myTabs a:first').tab('show') // Select first tab

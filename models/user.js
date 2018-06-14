@@ -9,11 +9,11 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     username: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(20),
       allowNull: true
     },
     email: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     password: {

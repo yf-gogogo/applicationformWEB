@@ -83,16 +83,16 @@
         </div>
     </div>
 </div>
-<div class="container mycontainer padding" style="background-color: #eeeeee;opacity:1" >
+<div class="container padding" style="background-color: #eeeeee;opacity:1" >
 
     <img src="images/images.png" style="width: 100%">
 
-    <ul class="nav nav-tabs top" id="myTabs">
+    <ul class="nav nav-tabs top mycontainer" id="myTabs">
         <li role="presentation" class="active"><a href="#home">填写须知</a></li>
         <li role="presentation" style="display: none"><a href="#profile" id="tabsubmit">开始报名</a></li>
         <li role="presentation"><a href="#message" id="tabsubmitinfo">报名信息</a></li>
     </ul>
-    <div class="tab-content top">
+    <div class="tab-content top mycontainer">
         <div role="tabpanel" class="tab-pane fade in active" id="home">
             <form class="padding">
                 <h2>录入报名信息时请注意：</h2>
@@ -145,16 +145,16 @@
                     <label>家庭住址</label>
                     <div class="row">
                         <div class="form-group">
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <select id="input_province" class="form-control input-lg" name="input_province">
                                 </select>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <select id="input_city" class="form-control input-lg" name="input_city">
 
                                 </select>
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <select id="input_area" class="form-control input-lg" name="input_area">
 
                                 </select>
@@ -163,7 +163,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-9">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label class="sr-only" for="detailAddress">详细地址</label>
                                 <input type="text" class="form-control input-lg" id="detailAddress" name="detailaddress" placeholder="详细地址">

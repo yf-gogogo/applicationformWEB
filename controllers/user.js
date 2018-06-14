@@ -27,7 +27,7 @@ async function addUser(req,res) {
             res.json({"errcode":0});
         }
     }else {
-        res.json({"errcode":1});
+        res.json({"errcode":2});
     }
 
 }
@@ -35,7 +35,7 @@ async function login(req,res){
     console.log(req.ip);
     let username = req.query.username;
     let password = req.query.password;
-
+    console.log(username.length);
     let result = await s_user.findOne({
         where:{
             [Op.or]:[{username:username},{email:username}],

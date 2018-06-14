@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     name: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(255),
       allowNull: false,
       defaultValue: ''
     },
@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     email: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     cardid: {
@@ -30,39 +30,39 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     address: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     school: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     major: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     politics: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     plan_major: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     nation: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     birthday: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     duty: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     cet: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     hobby: {
@@ -70,11 +70,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     class_rank: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     major_rank: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     file_path: {
