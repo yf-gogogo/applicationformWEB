@@ -132,13 +132,13 @@ $(document).ready(function() {
             console.log(result);
             if(result.errcode == 0){
                 alert("注册成功");
+                $('#myTabs a:first').tab('show') // Select first tab
             }else if(result.errcode == 1){
                 alert("邮箱已注册");
             }else {
                 alert("邮箱格式不对");
             }
-
-            $('#myTabs a:first').tab('show') // Select first tab
+            
         }, 'json');
     });
     /*管理员*/
